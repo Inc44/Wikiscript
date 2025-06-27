@@ -12,6 +12,21 @@ h1 {
 	text-align: center;
 }
 
+#dropZone {
+	border: 0.125rem dashed transparent;
+	margin-bottom: -0.25rem;
+	margin-left: -0.375rem;
+	margin-right: -0.625rem;
+	margin-top: -0.25rem;
+	padding: 0.25rem 0.5rem 0.25rem 0.25rem;
+	transition: background-color 0.2s, border-color 0.2s;
+}
+
+#dropZone.drag-over {
+	background-color: #cfc;
+	border-color: #000;
+}
+
 textarea {
 	background-color: #fff;
 	border: 0.125rem solid #000;
@@ -53,4 +68,8 @@ button.processing {
 
 button.done {
 	background-color: #afa;
+}
+
+button.error {
+	background-color: #faa;
 }
