@@ -1,0 +1,56 @@
+body {
+	background-color: #aff;
+	font-family: monospace;
+	padding: 1rem;
+	width: 18rem;
+}
+
+h1 {
+	font-size: 1.75rem;
+	margin-bottom: 1rem;
+	margin-top: 0;
+	text-align: center;
+}
+
+textarea {
+	background-color: #fff;
+	border: 0.125rem solid #000;
+	box-shadow: 0.25rem 0.25rem 0 #000;
+	box-sizing: border-box;
+	font-size: 1rem;
+	height: 7rem;
+	padding: 0.5rem;
+	resize: none;
+	width: 100%;
+}
+
+textarea:focus {
+	box-shadow: 0.3rem 0.3rem 0 #000;
+	outline: 0.15rem solid #000;
+}
+
+button {
+	background-color: #fbb;
+	border: 0.125rem solid #000;
+	box-shadow: 0.25rem 0.25rem 0 #000;
+	cursor: pointer;
+	font-size: 1.25rem;
+	font-weight: bold;
+	margin-top: 1rem;
+	padding: 0.5rem;
+	width: 100%;
+}
+
+button:active {
+	background-color: #fdb;
+	box-shadow: 0.3rem 0.3rem 0 #000;
+	outline: 0.15rem solid #000;
+}
+
+button.processing {
+	background-color: #fdb;
+}
+
+button.done {
+	background-color: #afa;
+}
