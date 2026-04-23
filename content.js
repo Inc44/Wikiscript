@@ -9,7 +9,7 @@ chrome.storage.sync.get(
 	{
 		chrome.runtime.sendMessage('get-history', (response) =>
 		{
-			visitedLinks = new Set(response && response.links ? response.links : []);
+			visitedLinks = new Set(response?.links || []);
 			hideLinks();
 		});
 	}
@@ -21,13 +21,6 @@ chrome.storage.sync.get(
 		if (a.pathname.includes(":")) return false;
 		if (a.pathname === window.location.pathname) return false;
 		return true;
-	}
-
-	function replaceLink(a)
-	{
-		const span = document.createElement("span");
-		span.innerHTML = a.innerHTML;
-		a.replaceWith(span);
 	}
 
 	function hideLinks()
@@ -42,7 +35,7 @@ chrome.storage.sync.get(
 			a.dataset.hidden = "true";
 			if (prefs.hideLinks === "all")
 			{
-				replaceLink(a);
+				a.replaceWith(...a.childNodes);
 			}
 			else if (prefs.hideLinks === "history" && visitedLinks)
 			{
@@ -50,7 +43,7 @@ chrome.storage.sync.get(
 					.toLowerCase();
 				if (visitedLinks.has(linkPath))
 				{
-					replaceLink(a);
+					a.replaceWith(...a.childNodes);
 				}
 			}
 		});

@@ -10,11 +10,19 @@ const topicList = document.getElementById("topicList");
 const addButton = document.getElementById("addButton");
 let isShiftPressed = false;
 
+function updateAddButtonText()
+{
+	if (!addButton.disabled)
+	{
+		addButton.textContent = isShiftPressed ? "Export History" : "Add to History";
+	}
+}
+
 function resetIdleAddButtonState()
 {
 	addButton.className = "";
 	addButton.disabled = false;
-	addButton.textContent = isShiftPressed ? "Export History" : "Add to History";
+	updateAddButtonText();
 }
 
 function handleFile(file)
@@ -69,7 +77,7 @@ function exportUrlsFromHistory()
 		const links = [];
 		for (const link of results)
 		{
-			if (link.url && link.url.includes(".wikipedia.org/wiki/"))
+			if (link.url)
 			{
 				links.push(link.url);
 			}
@@ -119,10 +127,7 @@ document.addEventListener("keydown", (event) =>
 	if (event.key === "Shift")
 	{
 		isShiftPressed = true;
-		if (!addButton.disabled)
-		{
-			addButton.textContent = "Export History";
-		}
+		updateAddButtonText();
 	}
 });
 document.addEventListener("keyup", (event) =>
@@ -130,19 +135,13 @@ document.addEventListener("keyup", (event) =>
 	if (event.key === "Shift")
 	{
 		isShiftPressed = false;
-		if (!addButton.disabled)
-		{
-			addButton.textContent = "Add to History";
-		}
+		updateAddButtonText();
 	}
 });
 window.addEventListener("blur", () =>
 {
 	isShiftPressed = false;
-	if (!addButton.disabled)
-	{
-		addButton.textContent = "Add to History";
-	}
+	updateAddButtonText();
 });
 dropZone.addEventListener("dragover", (dragEvent) =>
 {

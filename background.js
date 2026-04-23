@@ -12,22 +12,18 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) =>
 			const links = [];
 			for (const link of results)
 			{
-				try
+				if (!link.url) continue;
+				const a = new URL(link.url);
+				if (!a.pathname.includes(":"))
 				{
-					const a = new URL(link.url);
-					if (!a.pathname.includes(":"))
-					{
-						const linkPath = (a.hostname + a.pathname.replace(/\/$/, ""))
-							.toLowerCase();
-						links.push(linkPath);
-					}
+					const linkPath = (a.hostname + a.pathname.replace(/\/$/, ""))
+						.toLowerCase();
+					links.push(linkPath);
 				}
-				catch (e)
-				{}
 			}
 			sendResponse(
 			{
-				links: links
+				links
 			});
 		});
 		return true;
