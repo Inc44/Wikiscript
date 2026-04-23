@@ -32,13 +32,14 @@ chrome.storage.sync.get(
 		if (links.length === 0) return;
 		links.forEach(a =>
 		{
-			a.dataset.hidden = "true";
 			if (prefs.hideLinks === "all")
 			{
+				a.dataset.hidden = "true";
 				a.replaceWith(...a.childNodes);
 			}
 			else if (prefs.hideLinks === "history" && visitedLinks)
 			{
+				a.dataset.hidden = "true";
 				const linkPath = (a.hostname + a.pathname.replace(/\/$/, ""))
 					.toLowerCase();
 				if (visitedLinks.has(linkPath))
